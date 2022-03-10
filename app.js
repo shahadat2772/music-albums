@@ -16,6 +16,14 @@ const handleSearch = () => {
 
 // SHOW ARTISTS ON SITE
 const showArtists = (data) => {
+  if (!data) {
+    // CLEARING ALBUMS TEXT CONTENT
+    getById("albums").textContent = "";
+    // CLEARING ARTISTS TEXT CONTENT
+    getById("artists").textContent = "";
+    alert("No match found");
+    return;
+  }
   // CLEARING ALBUMS TEXT CONTENT
   getById("albums").textContent = "";
   // CLEARING ARTISTS TEXT CONTENT
@@ -56,7 +64,6 @@ const showArtists = (data) => {
 
 // FETCHING ALBUM
 const fetchAlbums = (id) => {
-  console.log(id);
   const url = `https://theaudiodb.com/api/v1/json/2/album.php?i=${id}`;
   fetch(url)
     .then((res) => res.json())
